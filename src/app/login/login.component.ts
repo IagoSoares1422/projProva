@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -11,10 +13,9 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder) { }
-
-
+  constructor(private formBuilder: FormBuilder, 
+              private router: Router) { }
+  
     ngOnInit(): void {
       this.loginForm = this.formBuilder.group({
           email: ['', Validators.required],
@@ -25,10 +26,12 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;
 
-    if(email == 'iago' and password == '12345'){
-
+    if(email =="iago" && password =='123'){
+      alert('Bem vindo!!');
+      this.router.navigate(['home']);      
     }else{
-      
+      alert('Login ou senha incorretos');
+      this.router.navigate(['login']); 
     }
   }
 }
